@@ -17,8 +17,7 @@ Here’s a basic example of how to use the CablyAI client:
 ```typescript
 import cably from 'cablyai-client';
 
-const client = cably('YOUR_API_KEY'); // Replace with your actual API key
-client.systemprompt = "You are a helpful assistant called supdawg-1.";
+const client = cably('YOUR_API_KEY', "You are a helpful assistant called supdawg-1.");
 
 // Example: Chat request
 client.chat("MODEL_NAME", [
