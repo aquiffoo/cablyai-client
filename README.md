@@ -21,7 +21,21 @@ const client = cably('YOUR_API_KEY'); // Replace with your actual API key
 client.systemprompt = "You are a helpful assistant called supdawg-1.";
 
 // Example: Chat request
-client.chat("MODEL_NAME", "What can you do?")
+client.chat("MODEL_NAME", [
+      {
+        role: "system",
+        content: "You're a helpful assistant."
+      },
+      {
+        role: "user",
+        content: "Hello!"
+      },
+      {
+        role: "assistant",
+        content: "Hello! How can I assist you today?"
+      }
+    ],
+    )
   .then(response => {
     console.log("Chat Response:", response);
   })
