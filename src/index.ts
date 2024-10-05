@@ -3,11 +3,9 @@ import axios from 'axios';
 class CablyAIClient {
   private apiKey: string;
   private baseUrl: string = 'https://cablyai.com/v1';
-  public systemprompt: string;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
-    this.systemprompt = "";
   }
 
   async request(type: string, model: string, prompt: string) {
@@ -31,7 +29,7 @@ class CablyAIClient {
     return response.data;
   }
 
-  async checkModeration(input: string, model: string = "text-moderation-latest") {
+  async checkModeration(input: string, model: string = "omni-moderation-latest") {
     const response = await axios.post(`${this.baseUrl}/moderations`, {
       input,
       model,
@@ -43,8 +41,7 @@ class CablyAIClient {
     return response.data;
   }
 
-  async chat(model: string, prompt: string) {
-    const messages = [{ role: "system", content: this.systemprompt }, { role: "user", content: prompt }];
+  async chat(model: string, prompt: string, messages: object) {
     const response = await axios.post(`${this.baseUrl}/chat/completions`, {
       model,
       messages,
