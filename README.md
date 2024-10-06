@@ -17,14 +17,12 @@ Here’s a basic example of how to use the CablyAI client:
 ```typescript
 import cably from 'cablyai-client';
 
-const client = cably('YOUR_API_KEY', "You are a helpful assistant called supdawg-1.");
+const client = cably('YOUR_API_KEY');
+client.systemPrompt = "You are a helpful assistant called supdawg-1"
 
 // Example: Chat request
+// You can set the system prompt as the above or as a message in the array.
 client.chat("MODEL_NAME", [
-      {
-        role: "system",
-        content: "You're a helpful assistant."
-      },
       {
         role: "user",
         content: "Hello!"

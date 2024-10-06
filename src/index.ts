@@ -3,9 +3,11 @@ import axios from 'axios';
 class CablyAIClient {
   private apiKey: string;
   private baseUrl: string = 'https://cablyai.com/v1';
+  public systemPrompt: string;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
+    this.systemPrompt = "";
   }
 
   async request(type: string, model: string, prompt: string) {
@@ -41,7 +43,11 @@ class CablyAIClient {
     return response.data;
   }
 
-  async chat(model: string, prompt: string, messages: object) {
+  async chat(model: string, messages: object[]) {
+    messages.push({
+      role: "system",
+      content: this.systemPrompt
+    });
     const response = await axios.post(`${this.baseUrl}/chat/completions`, {
       model,
       messages,
