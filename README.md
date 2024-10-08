@@ -82,7 +82,7 @@ client.image("MODEL_NAME", "Generate an image of a sunset over the mountains.")
 
 ## License
 
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the ISC License because it's an NPM package and it's the default option. Btw i don't really care so... - there is no LICENSE file for details.
 
 ## Contributing
 
