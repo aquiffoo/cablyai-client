@@ -87,8 +87,29 @@ class CablyAIClient {
     return response.data;
   }
 
-  async sendRequest(type: string, model: string, prompt: string) {
-    return this.request(type, model, prompt);
+  async copilotSearch(mode: string, query: string) {
+    const validModels = ["precise", "balanced", "creative"];
+    if (!validModels.includes(mode)) {
+      throw new Error(`Invalid mode: ${mode}. Please choose from ${validModels.join(", ")}`);
+    } else {
+      const model = `copilot-${mode}`;
+      const response = await axios.post(`${this.baseUrl}/chat/completions`, {
+        model: mode,
+        messages: [
+          {
+            role: "user",
+            content: `Search on the web for ${query}.`,
+          }
+        ],
+        stream: false
+      }, {
+        headers: {
+          "Authorization": `Bearer ${this.apiKey}`,
+        },
+      });
+
+      return response.data;
+    }
   }
 }
 
