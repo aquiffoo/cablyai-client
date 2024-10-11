@@ -2,6 +2,8 @@
 
 A simple Node.js client for interacting with the CablyAI API, allowing you to easily make requests for text, image, and audio generation.
 
+**CURRENT VERSION**: 1.1.1 (added web search with Copilot, changes in README)
+
 ## Installation
 
 To install the package, run the following command:
@@ -48,6 +50,15 @@ client.image("MODEL_NAME", "Generate an image of a sunset over the mountains.")
   .catch(error => {
     console.error("Error during image generation request:", error);
   });
+
+// Example: Web search with Copilot
+client.copilotSearch("COPILOT_MODE_NAME", "Trending YouTube videos")
+  .then(response => {
+    console.log("Search result: ", response);
+  })
+  .catch(error => {
+    console.error("Error during search: ", error);
+  })
 ```
 
 ## API Methods
